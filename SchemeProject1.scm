@@ -138,5 +138,11 @@
 	)
 )
 
-
+(define inc_n 
+	(lambda (x)
+		(lambda (f)
+			(+ f x)
+		)
+	)
+)
 
