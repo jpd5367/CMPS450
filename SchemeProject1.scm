@@ -1,7 +1,8 @@
 ; Assignment: Scheme Project1
 ; Class:      CMPS 450
 ; Semester:   Fall 2015
-; Author;     Joseph DeHart
+; Author:     Joseph DeHart
+; CLID:       jpd5367
 ; Professor:  Dr. Mohsen Amini
 ; Due Date:   Sept. 30, 2015 
 
