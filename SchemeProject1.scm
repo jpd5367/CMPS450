@@ -111,9 +111,9 @@
 			right ; return sorted right list if left list is empty
 			(if (null? right)
 				left ; return sorted left list if right list is empty
-				(if (> (car left) (car right)) ; sort and merge recursively until one list is empty 
+				(if (> (car right) (car left)) ; sort and merge recursively until one list is empty 
+					(cons (car left)  (merge (cdr left) right))
 					(cons (car right) (merge (cdr right) left))
-					(cons (car left)  (merge (cdr left) right)) 
 				)
 			)
 		)
@@ -136,9 +136,18 @@
 			(if (null? lis)
 				(list (reverse L) (reverse R)) ; if list is input list is empty return a list of two new lists
 				(div ; recursive call to traverse list
-					(cddr lis)
-					(cons (cadr lis) R) ; add 2nd element to right list
-					(cons (car lis) L)	; add 1st element to left list		
+					(if (null? (cdr lis))
+						'()
+						(if (null? (cddr lis))
+							'()
+							(cddr lis)
+						)
+					)
+					(cons (car lis) L)	; add 1st element to left list
+					(if (null? (cdr lis))
+						R
+						(cons (cadr lis) R) ; add 2nd element to right list		
+					)
 				)
 			)
 		)
@@ -176,4 +185,3 @@
 		)
 	)
 )
-
