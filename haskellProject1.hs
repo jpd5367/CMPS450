@@ -67,7 +67,8 @@ mergeSort lis =
 -- Higher order function which increments another function input by n
 -- input:  integer
 -- output: function the increments any value passed to it by input 
-
+inc_n :: (Num a) => a -> a -> a
+inc_n n = (\f -> f + (n))
 
 
 ----   HELPER FUNCTIONS
