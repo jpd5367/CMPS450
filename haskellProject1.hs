@@ -25,45 +25,108 @@ listMinMax l = next l (head l) (head l) where
 -- input:  user inputs integers until 0 is received
 -- output: list of integers in the order entered
 --         list containing minimum and maximum values of the list
-
-breakString s = next s c where
-	next (x:xs) ' ' =  if (head xs == ' ')
-
-main = main2 [] where 
-	main2 l = do
-	putStrLn "enter Ints"
-	input <- getLine
-	if input == "0" 
-	then return l -- call function to process data
+getNumbers :: IO [Int]
+getNumbers = do
+	putStrLn "\nenter an Integer, 0 to exit"
+	input <- getNumber
+	if input == 0 
+	then return [] -- call function to process data
 	else do 
-		main2 (input:l)
-
-
-
-		
+		n <- getNumbers
+		return (input:n)
 
 
 -- collect integers returns list with min and max values, 
 -- input:  user input terminated by an input of 0
 -- output: print the list of input in the order entered
 --         print the minimum and maximum values from the input
+getNumbersMinMax :: IO ()
+getNumbersMinMax = do
+	nums <- getNumbers
+	let minMax = listMinMax nums
+	putStrLn "\nThe Numbers you entered were:"
+	print nums
+	putStrLn "The Minimum Value was: "
+	print (fst minMax)
+	putStrLn "The Maximum Value was: "
+	print (snd minMax)
+
+-- Sort list using merge-sort algorithm
+-- input:  list of integers
+-- output: sorted list of integers
+
+
+-- Higher order function which increments another function input by n
+-- input:  integer
+-- output: function the increments any value passed to it by input 
 
 
 
+----   HELPER FUNCTIONS
+digits = ['0','1','2','3','4','5','6','7','8','9']
+
+isDigit :: Char -> Bool
+isDigit c = 
+	if c `elem` digits
+	then True
+	else False
+
+charToInt :: Char -> Int
+charToInt c
+	| c == '0' = 0
+	| c == '1' = 1
+	| c == '2' = 2
+	| c == '3' = 3
+	| c == '4' = 4
+	| c == '5' = 5
+	| c == '6' = 6
+	| c == '7' = 7
+	| c == '8' = 8
+	| c == '9' = 9
+	| otherwise = 0
 
 
+getListOfDigits :: IO [Int]
+getListOfDigits = do 
+		c <- getChar
+		if (c == '\n' || c == ' ' || not (isDigit c))
+			then  
+				return []
+			else
+				do
+					n <- getListOfDigits 
+					return ((charToInt c):n)
 
+fromDigits = foldl addDigits 0 where
+	addDigits num dig = 10 * num + dig
 
+getNumber :: IO Int
+getNumber = do
+	neg <- getChar
+	if (neg == '-')
+		then do
+			d <- getListOfDigits
+			let x = fromDigits d
+			return (-1 * x) 
+		else do
+			d <- getListOfDigits
+			let t = ((charToInt neg):d)
+			let x = fromDigits t 
+			return x
+
+getWord :: IO String
+getWord = do 
+	c <- getChar
+	if (c == '\n' || c == ' ')
+		then return ""
+		else
+			do
+				w <- getWord
+				return (c:w)
 
 -- merges two lists together into a sorted list
 -- input:  two lists
 -- output: one sorted list containing all elements of the original list
-
-
-
-
-
-
 
 
 -- Splits a list into 2 half list
@@ -73,20 +136,3 @@ main = main2 [] where
 --         list 2 contains odd elements of the original list
 
 
-
-
-
-
-
--- Sort list using merge-sort algorithm
--- input:  list of integers
--- output: sorted list of integers
-
-
-
-
-
-
--- Higher order function which increments another function input by n
--- input:  integer
--- output: function the increments any value passed to it by input 
