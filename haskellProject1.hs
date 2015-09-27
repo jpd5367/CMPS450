@@ -54,7 +54,15 @@ getNumbersMinMax = do
 -- Sort list using merge-sort algorithm
 -- input:  list of integers
 -- output: sorted list of integers
-
+mergeSort lis =
+	if (null lis)
+		then lis
+		else if (null (tail lis))
+			then lis
+			else 
+				let x = (split lis)
+				in
+					merge (mergeSort (head x)) (mergeSort (head (tail x))) 
 
 -- Higher order function which increments another function input by n
 -- input:  integer
@@ -127,12 +135,26 @@ getWord = do
 -- merges two lists together into a sorted list
 -- input:  two lists
 -- output: one sorted list containing all elements of the original list
-
-
+merge left right
+	| null left = right
+	| null right = left
+	| otherwise = 
+		if ((head right) > (head left))
+		then ((head left) :(merge (tail left)  right ))
+		else ((head right):(merge (tail right) left  ))
+		
 -- Splits a list into 2 half list
 -- input: a list
 -- output: a list containing a pair of lists; 
 --         list 1 contains even elements of the original list 
 --         list 2 contains odd elements of the original list
-
+split lis = div lis [] [] where
+	div lis l r = 
+		if (null lis)
+			then [reverse l, reverse r] 
+			else if (null (tail lis))
+				then div [] ((head lis):l) r
+				else if (null (tail (tail lis)))
+					then div [] ((head lis):l) ((head (tail lis)):r)
+					else div (tail (tail lis)) ((head lis):l) ((head (tail lis)):r)
 
