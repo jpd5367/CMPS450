@@ -69,11 +69,11 @@ mergeSort lis =
 				   -- then use merge to combine each sorted list until only one sorted List remains
 					merge (mergeSort (head x)) (mergeSort (head (tail x))) 
 
--- Higher order function which increments another function's input by n
+-- Higher order function which returns a function to increment its parameter by n
 -- Input:  Integer
--- Output: Function the increments another function's parameter by n 
+-- Output: Function that increments its parameter by n 
 inc_n :: (Num a) => a -> a -> a
-inc_n n = (\f -> f + (n)) -- returns a function f(x+n) when given function f(x)
+inc_n n = (\f -> f + (n)) -- returns a function x + n
 
 ----   HELPER FUNCTIONS
 
