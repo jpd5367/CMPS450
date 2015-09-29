@@ -59,7 +59,6 @@
 ; collect integers from the user, returns list as entered
 ; input:  user inputs integers until 0 is received
 ; output: list of integers in the order entered
-;         list containing minimum and maximum values of the list
 (define collect-ints 
 	(lambda ()
 		(let getint
@@ -103,9 +102,9 @@
 	)
 )
 
-; merges two lists together into a sorted list
-; input:  two lists
-; output: one sorted list containing all elements of the original list
+; Merges two sorted lists together into a single sorted list
+; Input:  two sorted lists
+; Output: one sorted list containing all elements of the two original lists
 (define merge 
 	(lambda (left right)
 		(if (null? left)
@@ -121,9 +120,9 @@
 	)
 )
 
-; Splits a list into 2 half list
-; input: a list
-; output: a list containing a pair of lists; 
+; Splits a list into 2 half lists
+; Input: a list
+; Output: a list containing a pair of lists; 
 ;         list 1 contains even elements of the original list 
 ;         list 2 contains odd elements of the original list
 (define split
