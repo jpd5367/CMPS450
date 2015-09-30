@@ -177,7 +177,7 @@
 
 ; Higher order function which returns a function to increment its parameter by n
 ; input:  integer
-; output: function the increments any value passed to it by input by n
+; output: function the increments its parameter by n
 (define inc_n 
 	(lambda (x)
 		(lambda (f) ; return function

@@ -49,9 +49,9 @@ getNumbersMinMax = do
 	let minMax = listMinMax nums -- get minimum and maximun value from the list
 	putStrLn "\nThe Numbers you entered were:" 
 	print nums
-	putStrLn "The Minimum Value was: "
+	putStrLn "Minimum Value: "
 	print (fst minMax) -- minimum value is the 1st element of the minMax pair
-	putStrLn "The Maximum Value was: "
+	putStrLn "Maximum Value: "
 	print (snd minMax) -- maximum value is the 2nd element of the minMax pair
 
 -- Sort list using merge-sort algorithm
@@ -69,7 +69,7 @@ mergeSort lis =
 				   -- then use merge to combine each sorted list until only one sorted List remains
 					merge (mergeSort (head x)) (mergeSort (head (tail x))) 
 
--- Higher order function which returns a function to increment its parameter by n
+-- Higher order function which returns a function which increments its parameter by n
 -- Input:  Integer
 -- Output: Function that increments its parameter by n 
 inc_n :: (Num a) => a -> a -> a
@@ -147,20 +147,6 @@ getNumber = do
 					return x
 				else do -- if it is anything else disreguard first character input and return the Integer
 					return (digitsToNum d)
-
--- IO Function, gets Input from the user, returns a string of Characters with no spaces
--- Function is similar to getLine, except a space terminates input as well as newline
--- Input:  None at call, String of characters from user at runtime
--- Output: Returns an IO String
-getWord :: IO String
-getWord = do 
-	c <- getChar 
-	if (c == '\n' || c == ' ') -- terminate input if newline or space
-		then return ""
-		else
-			do
-				w <- getWord -- recursive call to get more characters
-				return (c:w) -- build a string by concatenating each char as the recursive calls return
 
 -- Merges two sorted lists together into a single sorted list
 -- Input:  two sorted lists
