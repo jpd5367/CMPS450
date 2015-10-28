@@ -1,3 +1,7 @@
+; Test Cases for Scheme Project 1
+; Joseph DeHart
+; jpd5367
+
 (define testData1 '(1 8 4 2 8 45 -34 345))
 (define testData2 '(434 60000 234234 -23 4 700))
 (define testData3 '(1 2 3 4 5 6 7 8 9 10 11 
